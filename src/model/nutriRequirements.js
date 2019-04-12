@@ -25,21 +25,10 @@ const cCalRatio = 4				// number of calories in each gram of carbohydrate
 const bulkModifier = 1.1		// calorie modifier for bulk regime
 const cutModifier = 0.9			// calorie modifier for cut regime
 
-const profile = {
-  weight: null, 
-  height: null,
-  wodyFat: null, 
-  wctivityLevel: null, 
-  Age: null,  
-  float64: null,
-  gender: null, 
-  regime: null, 
-  string: null,
-}
-
 function getNutriRequirements(profile) {
   const macros = getMacros(profile);
   //const micros = getMicros(profile);
+  return macros;
 }
 
 function getMacros(profile) {
@@ -57,6 +46,9 @@ function getMacros(profile) {
 
   return macros
 
+  function leanBodyMass(weight, bodyFat) {
+    return weight * (1-bodyFat)
+  }
 
   function findCalories(profile) {
     // calorie calculation methodologies
@@ -67,10 +59,6 @@ function getMacros(profile) {
     let calorieBase = getCalorieBase();
     let calories = scaleCaloriesForActivityLevel(calorieBase);
     return calories;
-
-    function leanBodyMass(weight, bodyFat) {
-      return weight * (1-bodyFat)
-    }
 
     function setMethodologyValues() {
       switch (profile.gender) {
@@ -115,5 +103,6 @@ function getMacros(profile) {
   }
 }
 
-
-
+module.exports = {
+  getNutriRequirements,
+}
