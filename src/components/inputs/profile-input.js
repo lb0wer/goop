@@ -11,6 +11,17 @@ export class ProfileInputs extends Component {
     regime: '',
   }
 
+  submit(e) {
+    e.preventDefault();
+    const profileData = this.transformUnits(this.state);
+    this.props.submitProfileData(profileData);
+  }
+
+  transformUnits(state) {
+    state.bodyFat = this.state.bodyFat / 100;
+    return state;
+  }
+
   handleAge(e) {
     this.setState({ age: e.target.value });
   }
@@ -31,8 +42,15 @@ export class ProfileInputs extends Component {
     this.setState({ gender: e.target.value });
   }
 
+  handleActivity(e) {
+    this.setState({ activity: e.target.value });
+  }
+
+handleRegime(e) {
+    this.setState({ regime: e.target.value });
+  }
+
   render() {
-    console.log(this.state)
     return (
       <div>
         <h1>Profile Inputs</h1>
@@ -81,7 +99,7 @@ export class ProfileInputs extends Component {
               placeholder="Bodyfat"
             />
           </div>
-          <div value={this.state.gender}  className="radio">
+          <div value={this.state.gender} className="radio">
             <label>
               <input onChange={this.handleGender.bind(this)} value="male" type="radio" name="optradio" />
               Male
@@ -91,24 +109,24 @@ export class ProfileInputs extends Component {
               Female
             </label>
           </div>
-          <div>
-            <select className="custom-select" defaultValue="0">
+          <div value={this.state.activity} onChange={this.handleActivity.bind(this)}>
+            <select className="custom-select" defaultValue="1">
               <option value="0">-- Activity Level</option>
               <option value="1">Home Day</option>
-              <option value="2">Work Day</option>
-              <option value="3">Work + Gym Day</option>
+              <option value="1.2">Work Day</option>
+              <option value="1.5">Work + Gym Day</option>
             </select>
           </div>
-          <div>
+          <div value={this.state.regime} onChange={this.handleRegime.bind(this)}>
             <select className="custom-select">
-              <option selected>-- Regime</option>
-              <option value="1">Bulk</option>
-              <option value="2">Cut</option>
-              <option value="3">Maintain</option>
+              <option defaultValue="maintain">-- Regime</option>
+              <option value="bulk">Bulk</option>
+              <option value="cut">Cut</option>
+              <option value="maintain">Maintain</option>
             </select>
           </div>
           <br />
-          <button type="submit" className="btn btn-primary">
+          <button onClick={this.submit.bind(this)} type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
