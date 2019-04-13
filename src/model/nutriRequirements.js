@@ -57,7 +57,7 @@ function getMacros(profile) {
     const katchMcArdle = 370 + (leanBodyMass(profile.weight, profile.bodyFat) * 21.6);
     setMethodologyValues();
     let calorieBase = getCalorieBase();
-    let calories = scaleCaloriesForActivityLevel(calorieBase);
+    let calories = scaleCaloriesForRegime(calorieBase);
     return calories;
 
     function setMethodologyValues() {
@@ -87,7 +87,7 @@ function getMacros(profile) {
       return profile.activity * (harrisBenedict + mifflinStJeor + katchMcArdle) / 3
     }
 
-    function scaleCaloriesForActivityLevel(calorieBase) {
+    function scaleCaloriesForRegime(calorieBase) {
       switch (profile.regime) {
         case "bulk":
           return calorieBase * bulkModifier
