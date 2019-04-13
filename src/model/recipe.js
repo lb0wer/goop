@@ -1,5 +1,3 @@
-import { builtinModules } from "module";
-
 /*
 	recipe.js generates a soylent recipe based on the user's macros.
 */
@@ -26,6 +24,15 @@ import { builtinModules } from "module";
 	important provided it's within certain bounds.
 */
 
+const ingredients = require('../data/ingredients.json');
+/* const ingredients = {
+  oats, whey, maltodextrin, oil, psyllium, salt, multivitamin, choline, potassium ingredient
+} 
+const ingredient = {
+	protein, carbs, fat, fibre, potassium
+} */
+
+
 const oatBase = 200
 const oatMod = 150
 const calUpper = 3400
@@ -36,20 +43,13 @@ const multivitamin = 1.8
 const choline = 1.0
 const potassiumReq = 2500
 
-const ingredients = {
-  oats, whey, maltodextrin, oil, psyllium, salt, multivitamin, choline, potassium ingredient
-} 
-
-const ingredient = {
-	protein, carbs, fat, fibre, potassium
-}
 
 function generateRecipe(macros) {
 	const recipe = {
     oats: null,  
     whey: null,
     maltodextrin: null, 
-    oil: null, 
+    canolaOil: null, 
     psyllium: null,
     salt: null, 
     multivitamin: null, 
@@ -57,14 +57,16 @@ function generateRecipe(macros) {
     potassium: null,
   }
 
+  // TODO e.g. ingredients.canolaOil.fat
+
 	recipe.salt = salt
 	recipe.multivitamin = multivitamin
 	recipe.choline = choline
-	recipe.oats = oatBase + oatMod*(m.calories-calLower)/(calUpper-calLower)
-	recipe.whey = (m.protein - recipe.oats*oats.protein) / whey.protein
-	recipe.psyllium = ((m.calories/1000)*fibreRatio - recipe.whey*whey.fibre - recipe.oats*oats.fibre) / psyllium.fibre
-	recipe.oil = (m.Fat - recipe.Oats*Oats.Fat - recipe.Whey*Whey.Fat)
-	recipe.maltodextrin = (m.Carbs - recipe.oats*oats.carbs - recipe.whey*whey.carbs - recipe.psyllium - psyllium.carbs)
+	recipe.oats = oatBase + oatMod*(macros.calories-calLower)/(calUpper-calLower)
+	recipe.whey = (macros.protein - recipe.oats*oats.protein) / whey.protein
+	recipe.psyllium = ((macros.calories/1000)*fibreRatio - recipe.whey*whey.fibre - recipe.oats*oats.fibre) / psylliumacros.fibre
+	recipe.oil = (macros.Fat - recipe.oats*oats.Fat - recipe.whey*whey.fat)
+	recipe.maltodextrin = (macros.Carbs - recipe.oats*oats.carbs - recipe.whey*whey.carbs - recipe.psyllium - psylliumacros.carbs)
 	recipe.potassium = (potassiumReq - recipe.oats*oats.potassium - recipe.multivitamin*multivitamin.potassium)
 
 	return recipe
