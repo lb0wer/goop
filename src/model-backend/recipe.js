@@ -31,9 +31,9 @@ const ingredient = {
 	protein, carbs, fat, fibre, potassium
 } */
 
-import { jsonStrToNum } from './utils';
+let { jsonStrToNum } = require('./utils');
 
-export function createRecipe(macros) {
+function createRecipe(macros) {
 	const oatBase = 100
 	const oatMod = 250
 	const calUpper = 3400
@@ -42,7 +42,7 @@ export function createRecipe(macros) {
 	const salt = 4.0
 	const multivitamin = 1.8
 	const choline = 1.0
-	const potassiumReq = 4700
+	const potassiumReq = 2500
 	
 	let ingredients = require('../data/ingredients.json');
 	ingredients = jsonStrToNum(ingredients);
@@ -79,7 +79,11 @@ export function createRecipe(macros) {
     recipe.wheyProtein * ingredients.wheyProtein.carbs +
     recipe.psylliumHusk * ingredients.psylliumHusk.carbs);
   recipe.potassiumGluconate =
-    (potassiumReq -
-    recipe.oatFlour * ingredients.oatFlour.potassium)/ingredients.potassiumGluconate.potassium
+    potassiumReq -
+    recipe.oatFlour * ingredients.oatFlour.potassium
 	return recipe
+}
+
+module.exports = {
+	createRecipe
 }
