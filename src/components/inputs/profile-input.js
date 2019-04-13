@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class ProfileInputs extends Component {
-  state = {
+/*   state = {
     age: 0,
     weight: 0,
     height: 0,
@@ -9,6 +9,16 @@ export class ProfileInputs extends Component {
     gender: '',
     activity: 1,
     regime: '',
+  } */
+
+  state = {
+    age: 25,
+    weight: 75,
+    height: 192,
+    bodyFat: 12,
+    gender: 'male',
+    activity: 1.2,
+    regime: 'maintain',
   }
 
   submit(e) {

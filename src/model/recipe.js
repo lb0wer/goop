@@ -31,7 +31,9 @@ const ingredient = {
 	protein, carbs, fat, fibre, potassium
 } */
 
-function createRecipe(macros) {
+import { jsonStrToNum } from './utils';
+
+export function createRecipe(macros) {
 	const oatBase = 200
 	const oatMod = 150
 	const calUpper = 3400
@@ -43,7 +45,6 @@ function createRecipe(macros) {
 	const potassiumReq = 2500
 	
 	let ingredients = require('../data/ingredients.json');
-	let { jsonStrToNum } = require('./utils');
 	ingredients = jsonStrToNum(ingredients);
 
 	const recipe = {
@@ -81,8 +82,4 @@ function createRecipe(macros) {
     potassiumReq -
     recipe.oatFlour * ingredients.oatFlour.potassium
 	return recipe
-}
-
-module.exports = {
-  createRecipe,
 }

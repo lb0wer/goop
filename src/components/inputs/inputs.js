@@ -12,18 +12,11 @@ export class Inputs extends Component {
     }
   }
 
-  sumbitProfileState(profileData) {
-    this.setState({
-      profile: profileData,
-    })
-  }
-
   render() {
-    console.log('inputs', this.state.profile);
     return (
       <div>
         <h1>Input</h1>
-        <ProfileInputs submitProfileData={this.sumbitProfileState.bind(this)}/>
+        <ProfileInputs submitProfileData={this.props.submitProfileData}/>
       </div>
     );
   }

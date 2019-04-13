@@ -1,4 +1,4 @@
-function jsonStrToNum(strIngredients) {
+export function jsonStrToNum(strIngredients) {
   let numIngredients = {};
   Object.entries(strIngredients).map(([ ingredientName, strNutrientValues ]) => {
     let numNutrientValues = {};
@@ -9,12 +9,4 @@ function jsonStrToNum(strIngredients) {
     numIngredients[ingredientName] = numNutrientValues;
   })
   return numIngredients;
-}
-
-let jsonIngredients = require('../data/ingredients.json');
-let res = jsonStrToNum(jsonIngredients);
-console.log(res);
-
-module.exports = {
-  jsonStrToNum,
 }

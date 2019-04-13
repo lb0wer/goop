@@ -25,7 +25,7 @@ const cCalRatio = 4				// number of calories in each gram of carbohydrate
 const bulkModifier = 1.1		// calorie modifier for bulk regime
 const cutModifier = 0.9			// calorie modifier for cut regime
 
-function createNutriRequirements(profile) {
+export function createNutriRequirements(profile) {
   const macros = getMacros(profile);
   //const micros = getMicros(profile);
   return macros;
@@ -84,7 +84,7 @@ function getMacros(profile) {
     }
 
     function getCalorieBase() {
-      return profile.activityLevel * (harrisBenedict + mifflinStJeor + katchMcArdle) / 3
+      return profile.activity * (harrisBenedict + mifflinStJeor + katchMcArdle) / 3
     }
 
     function scaleCaloriesForActivityLevel(calorieBase) {
@@ -101,8 +101,4 @@ function getMacros(profile) {
     }
   
   }
-}
-
-module.exports = {
-  createNutriRequirements,
 }
