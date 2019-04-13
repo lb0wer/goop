@@ -12,7 +12,7 @@ export class Recipe extends Component {
     return (
       <tr key={i}>
         <td scope="row">{ingredient}</td>
-        <td>{amount}</td>
+        <td>{Math.round(amount * 100) / 100}</td>
       </tr>
     )
   }

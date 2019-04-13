@@ -12,7 +12,7 @@ export class Macros extends Component {
     return (
       <tr key={i}>
         <td scope="row">{macros}</td>
-        <td>{amount}</td>
+        <td>{Math.round(amount * 100) / 100}</td>
       </tr>
     )
   }
