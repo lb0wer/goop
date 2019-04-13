@@ -25,7 +25,7 @@ const cCalRatio = 4				// number of calories in each gram of carbohydrate
 const bulkModifier = 1.1		// calorie modifier for bulk regime
 const cutModifier = 0.9			// calorie modifier for cut regime
 
-function getNutriRequirements(profile) {
+function createNutriRequirements(profile) {
   const macros = getMacros(profile);
   //const micros = getMicros(profile);
   return macros;
@@ -41,7 +41,7 @@ function getMacros(profile) {
 	
   macros.protein = pMassRatio * leanBodyMass(profile.weight, profile.bodyFat) * kilo2Pound
   macros.fat = fMassRatio * profile.weight * kilo2Pound
-  macros.calories = profile.findCalories()
+  macros.calories = findCalories(profile)
   macros.carbs = (macros.calories - pCalRatio*macros.protein - fCalRatio*macros.fat)/cCalRatio
 
   return macros
@@ -87,16 +87,16 @@ function getMacros(profile) {
       return profile.activityLevel * (harrisBenedict + mifflinStJeor + katchMcArdle) / 3
     }
 
-    function scaleCaloriesForActivityLevel() {
+    function scaleCaloriesForActivityLevel(calorieBase) {
       switch (profile.regime) {
         case "bulk":
-          return calories * bulkModifier
+          return calorieBase * bulkModifier
         case "maintain":
-          return calories
+          return calorieBase
         case "cut":
-          return calories * cutModifier
+          return calorieBase * cutModifier
         default:
-          return calories;
+          return calorieBase;
       }
     }
   
@@ -104,5 +104,5 @@ function getMacros(profile) {
 }
 
 module.exports = {
-  getNutriRequirements,
+  createNutriRequirements,
 }

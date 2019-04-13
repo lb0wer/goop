@@ -1,7 +1,7 @@
 const profile = {
   weight: null, 
   height: null,
-  wodyFat: null, 
+  bodyFat: null, 
   activityLevel: null, 
   age: null,  
   float64: null,
