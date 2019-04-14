@@ -15,7 +15,6 @@ export class Inputs extends Component {
   render() {
     return (
       <div>
-        <h1>Input</h1>
         <ProfileInputs submitProfileData={this.props.submitProfileData}/>
       </div>
     );

@@ -63,7 +63,7 @@ handleRegime(e) {
   render() {
     return (
       <div>
-        <h1>Profile Inputs</h1>
+        <h2>Profile Inputs</h2>
         <form>
           <div className="form-group">
             <label htmlFor="age">Age</label>
@@ -88,7 +88,7 @@ handleRegime(e) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="weight">Height cm</label>
+            <label htmlFor="height">Height cm</label>
             <input
               value={this.state.height}
               onChange={this.handleHeight.bind(this)}
@@ -110,15 +110,16 @@ handleRegime(e) {
             />
           </div>
           <div value={this.state.gender} className="radio">
-            <label>
-              <input onChange={this.handleGender.bind(this)} value="male" type="radio" name="optradio" />
-              Male
-            </label>
-            <label>
+            <div>
+              <label>Male &nbsp;</label>
+              <input id='male' onChange={this.handleGender.bind(this)} value="male" type="radio" name="optradio" />
+            </div>
+            <div>
+              <label>Female &nbsp;</label>
               <input onChange={this.handleGender.bind(this)} value="female" type="radio" name="optradio" />
-              Female
-            </label>
+            </div>
           </div>
+          <br/>
           <div value={this.state.activity} onChange={this.handleActivity.bind(this)}>
             <select className="custom-select" defaultValue="1">
               <option value="0">-- Activity Level</option>
@@ -127,6 +128,7 @@ handleRegime(e) {
               <option value="1.5">Work + Gym Day</option>
             </select>
           </div>
+          <br/>
           <div value={this.state.regime} onChange={this.handleRegime.bind(this)}>
             <select className="custom-select">
               <option defaultValue="maintain">-- Regime</option>
@@ -136,9 +138,11 @@ handleRegime(e) {
             </select>
           </div>
           <br />
-          <button onClick={this.submit.bind(this)} type="submit" className="btn btn-primary">
+          <button onClick={this.submit.bind(this)} type="submit" className="btn btn-info">
             Submit
           </button>
+          <br />
+          <br />
         </form>
       </div>
     );

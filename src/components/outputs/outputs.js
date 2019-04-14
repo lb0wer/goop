@@ -13,7 +13,6 @@ export class Outputs extends Component {
 
     return (
       <div>
-        <h1>Outputs</h1>
         <Macros macrosData={macros}/>
         <Recipe recipeData={recipe}/>
       </div>
