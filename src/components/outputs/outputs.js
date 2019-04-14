@@ -9,14 +9,14 @@ import { createNutriRequirements } from '../../model/nutri-requirements';
 export class Outputs extends Component {
 
   render() {
-    let macros = createNutriRequirements(this.props.profileData);
-    let recipe = createRecipe(macros);
+    let nutrientRequirments = createNutriRequirements(this.props.profileData);
+    let recipe = createRecipe(nutrientRequirments);
 
     return (
       <div>
-        <Macros macrosData={macros}/>
+        <Macros macrosData={nutrientRequirments}/>
         <Recipe recipeData={recipe}/>
-        <NutrientChecker/>
+        <NutrientChecker recipeData={recipe} nutrientData={nutrientRequirments}/>
       </div>
     )
   }

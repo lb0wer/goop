@@ -1,45 +1,41 @@
 import React, { Component } from 'react';
+import { checkNutrients } from '../../model/check-nutrients';
 
 export class NutrientChecker extends Component {
 
-  getMacrosRows() {
-    return Object.entries(this.props.macrosData).map( ([ macros, amount ], i) => {
-      return this.getMacrosRow(macros, amount, i);
+  getMacrosRows(totalNutrients) {
+    return Object.entries(this.props.nutrientData).map( ([ macro, targetAmount ], i) => {
+      return this.getMacrosRow(macro, targetAmount, totalNutrients[macro], i);
     })
   }
 
-  getMacrosRow(macros, amount, i) {
+  getMacrosRow(macro, targetAmount, recipeAmount, i) {
     return (
       <tr key={i}>
-        <td scope="row">{macros}</td>
-        <td>{Math.round(amount)}</td>
+        <td scope="row">{macro}</td>
+        <td>{Math.round(targetAmount)}</td>
+        <td>{Math.round(recipeAmount)}</td>
       </tr>
     )
   }
 
- /*  render() {
+  render() {
+    let totalNutrients = checkNutrients(this.props.recipeData);
     return (
       <div>
-        <h2>Macros</h2>
+        <h2>NutrientChecker</h2>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Macros</th>
-              <th scope="col">Amount</th>
+              <th scope="col">Your Target Amount</th>
+              <th scope="col">Recipe Amount</th>
             </tr>
           </thead>
           <tbody>
-            {this.getMacrosRows()}
+            {this.getMacrosRows(totalNutrients)}
           </tbody>
         </table>
-      </div>
-    )
-  } */
-
-  render() {
-    return (
-      <div>
-        <h2>NutrientChecker</h2>
       </div>
     )
   }

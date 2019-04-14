@@ -20,7 +20,7 @@ export class Recipe extends Component {
   render() {
     return (
       <div>
-        <h2>Recipe</h2>
+        <h2>Your Custom Recipe</h2>
         <table className="table">
           <thead>
             <tr>
