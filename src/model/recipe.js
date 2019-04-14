@@ -32,6 +32,8 @@ const ingredient = {
 } */
 
 import { jsonStrToNum } from './utils';
+import productJson from '../data/products.json';
+const products = jsonStrToNum(productJson);
 
 export function createRecipe(macros) {
 	const oatBase = 100
@@ -44,9 +46,6 @@ export function createRecipe(macros) {
 	const choline = 1.0
 	const potassiumReq = 4700
 	
-	let ingredients = require('../data/ingredients.json');
-	ingredients = jsonStrToNum(ingredients);
-
 	const recipe = {
     oatFlour: null,  
     wheyProtein: null,
@@ -59,27 +58,26 @@ export function createRecipe(macros) {
     potassiumGluconate: null,
   }
 
-  // TODO e.g. ingredients.canolaOil.fat
-
 	recipe.salt = salt;
   recipe.multivitamin = multivitamin;
   recipe.choline = choline;
   recipe.oatFlour =
     oatBase + (oatMod * ((macros.calories - calLower) / (calUpper - calLower)));
-  recipe.wheyProtein = (macros.protein - recipe.oatFlour * ingredients.oatFlour.protein) / ingredients.wheyProtein.protein;
+  recipe.wheyProtein = (macros.protein - recipe.oatFlour * products.oatFlour.protein) / products.wheyProtein.protein;
   recipe.psylliumHusk =
     ((macros.calories / 1000) * fibreRatio -
-      recipe.wheyProtein * ingredients.wheyProtein.fibre -
-      recipe.oatFlour * ingredients.oatFlour.fibre) /
-    ingredients.psylliumHusk.fibre;
-  recipe.canolaOil = macros.fat - recipe.oatFlour * ingredients.oatFlour.fat - recipe.wheyProtein * ingredients.wheyProtein.fat;
+      recipe.wheyProtein * products.wheyProtein.fibre -
+      recipe.oatFlour * products.oatFlour.fibre) /
+    products.psylliumHusk.fibre;
+  recipe.canolaOil = macros.fat - recipe.oatFlour * products.oatFlour.fat - recipe.wheyProtein * products.wheyProtein.fat;
   recipe.maltodextrin =
     macros.carbs -
-    (recipe.oatFlour * ingredients.oatFlour.carbs +
-    recipe.wheyProtein * ingredients.wheyProtein.carbs +
-    recipe.psylliumHusk * ingredients.psylliumHusk.carbs);
+    (recipe.oatFlour * products.oatFlour.carbs +
+    recipe.wheyProtein * products.wheyProtein.carbs +
+    recipe.psylliumHusk * products.psylliumHusk.carbs);
   recipe.potassiumGluconate =
     (potassiumReq -
-    recipe.oatFlour * ingredients.oatFlour.potassium)/ingredients.potassiumGluconate.potassium
+		recipe.oatFlour * products.oatFlour.potassium)/products.potassiumGluconate.potassium
+		
 	return recipe
 }
