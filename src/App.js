@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Mimix</h1>
+          <h1>Umix</h1>
           {this.renderCurrentView()}
         </header>
       </div>

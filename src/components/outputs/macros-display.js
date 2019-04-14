@@ -20,7 +20,7 @@ export class Macros extends Component {
   render() {
     return (
       <div>
-        <h2>Your Target Macros</h2>
+        <h2>Your Target Daily Macros</h2>
         <table className="table">
           <thead>
             <tr>

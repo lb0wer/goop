@@ -63,7 +63,7 @@ handleRegime(e) {
   render() {
     return (
       <div>
-        <h2>Profile Inputs</h2>
+        <h2>Your Profile</h2>
         <form>
           <div className="form-group">
             <label htmlFor="age">Age</label>
