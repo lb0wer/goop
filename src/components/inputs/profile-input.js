@@ -121,8 +121,9 @@ handleRegime(e) {
           </div>
           <br/>
           <div value={this.state.activity} onChange={this.handleActivity.bind(this)}>
-            <select className="custom-select" defaultValue="1">
-              <option value="0">-- Activity Level</option>
+            <label>Activity Level</label>
+            <select className="custom-select" defaultValue="0">
+              <option>-- Activity Level</option>
               <option value="1">Home Day</option>
               <option value="1.2">Work Day</option>
               <option value="1.5">Work + Gym Day</option>
@@ -130,11 +131,12 @@ handleRegime(e) {
           </div>
           <br/>
           <div value={this.state.regime} onChange={this.handleRegime.bind(this)}>
-            <select className="custom-select">
-              <option defaultValue="maintain">-- Regime</option>
-              <option value="bulk">Bulk</option>
+            <label>Goal</label>
+            <select className="custom-select" defaultValue="1">
+              <option>-- Goal</option>
               <option value="cut">Cut</option>
               <option value="maintain">Maintain</option>
+              <option value="bulk">Bulk</option>
             </select>
           </div>
           <br />

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Macros } from './macros-display';
 import { Recipe } from './recipe-display';
+import { NutrientChecker } from './nutrient-checker';
 import { createRecipe } from '../../model/recipe';
-import { createNutriRequirements } from '../../model/nutriRequirements';
+import { createNutriRequirements } from '../../model/nutri-requirements';
 
 
 export class Outputs extends Component {
@@ -15,6 +16,7 @@ export class Outputs extends Component {
       <div>
         <Macros macrosData={macros}/>
         <Recipe recipeData={recipe}/>
+        <NutrientChecker/>
       </div>
     )
   }
